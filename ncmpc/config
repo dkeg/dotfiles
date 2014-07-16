@@ -1,0 +1,10 @@
+host =			/tmp/mpd_socket
+enable-mouse =		no
+auto-center =		no
+visible-bitrate =	yes
+enable-colors =		yes
+color background =	none
+welcome-screen-list =	no
+scroll =		no
+wide-cursor =		yes
+

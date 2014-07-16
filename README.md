@@ -1,4 +1,3 @@
 dotfiles
 ========
-
-bits and pieces
+WIP

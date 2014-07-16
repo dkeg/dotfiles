@@ -1,0 +1,13 @@
+# .f - mplayer config
+
+msgcolor	= yes
+#msglevel	= 1
+
+# cache tweaks
+cache		= 8192
+cache-min	= 80.0
+
+# maximum start size
+xy		= 700
+
+# vim: set ft=mplayerconf :
