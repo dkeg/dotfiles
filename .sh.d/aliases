@@ -1,0 +1,24 @@
+#!/bin/zsh
+# .f - aliases
+
+# lazy fingers
+alias p="pwd"
+alias g="grep"
+alias a="tmux a -t"
+alias l="less"
+alias j="jobs"
+alias s="sed"
+
+# don't alias if command doesn't exist
+which colorls >> /dev/null && alias ls="colorls -lfHG" || alias ls="ls -alH"
+which clang   >> /dev/null && alias xcc="$CC -Weverything"
+alias cp="cp -r"
+alias scp="scp -r"
+alias mkdir="mkdir -p"
+alias fdm="fdm -k"
+alias poweroff="sudo shutdown -hp NOW"
+alias zzz='zzz ; [[ -n "$DISPLAY" ]] && slock'
+
+alias colemak="setxkbmap us -variant colemak"
+
+# vim: set ft=zsh

@@ -1,0 +1,6 @@
+function e () {
+	[[ -n "$VERBOSE" ]] && echo "e: $EDITOR $@"
+	$EDITOR $@
+}
+
+# vim: set ft=zsh :
