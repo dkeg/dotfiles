@@ -1,26 +1,15 @@
-#!/bin/zsh
-# .f - style
+#!/bin/sh
 
-# return if console
-[[ "$TERM" == "vt220" ]] && PS1="`tty`$ " && return
+prompt () {
+	ERR=$?
+	UID=$(id -u)
+	JOB=$(jobs | wc -l)
 
-# what to hilight
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+	[ $UID -eq 0 ] && printf '\033[31m━' || printf '\033[30m─'
+	[ $JOB -ne 0 ] && printf '\033[32m─' || printf '\033[30m─'
+	[ $ERR -ne 0 ] && printf '\033[33m─' || printf '\033[30m─'
+	
+	printf '\033[0m'
+}
 
-# style
-ZSH_HIGHLIGHT_STYLES[command]="fg=yellow,bold"
-ZSH_HIGHLIGHT_STYLES[function]="fg=yellow"
-ZSH_HIGHLIGHT_STYLES[unknown-token]="fg=black"
-ZSH_HIGHLIGHT_STYLES[path]='bg=black,fg=cyan'
-ZSH_HIGHLIGHT_STYLES[path_approx]=none
-ZSH_HIGHLIGHT_STYLES[path_prefix]=none
-ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=cyan'
-ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=green'
-
-
-# specific stuff
-ZSH_HIGHLIGHT_PATTERNS+=("sudo " "bold,fg=red")
-
-# prompt
-PROMPT="%{$fg[black]%(! $fg[red] )───╼$reset_color%}      "
-RPROMPT="%{$fg[red]%}%(?  ━)%{$reset_color%}"
+PS1='$(prompt) '

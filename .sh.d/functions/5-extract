@@ -1,32 +1,32 @@
-#!/bin/zsh
+#!/bin/sh
 # lazybrain can't remember tar flags for shit
 
 NUL=/dev/null
-alias e='echo "missing command:"'
 
-function extract () {
-	if [ -f $1 ] ; then
+exists () {
+	which $1 &> /dev/null && return 0 || return 1
+}
+
+extract () {
+	if [[ -f $1 ]]
+	then
 	case $1 in
 	
 	# extraction rules
-	*.tar.gz)  which tar     &> $NUL && tar xzf    $1 || e tar        ;;
-	*.tar.xz)  which tar     &> $NUL && tar xJf    $1 || e tar        ;;
-	*.tar.bz2) which tar     &> $NUL && tar xjf    $1 || e tar        ;;
-	*.bz2)     which bunzip2 &> $NUL && bunzip2    $1 || e bunzip     ;;
-	*.gz)      which gunzip  &> $NUL && gunzip     $1 || e gunzip     ;;
-	*.tgz)     which tar     &> $NUL && tar xzf    $1 || e tar        ;;
-	*.xz)      which unxz    &> $NUL && unxz       $1 || e unxz       ;;
+	*.tar.gz)  exists tar        && tar xzf    $1 || tput 31  ;;
+	*.tgz)     exists tar        && tar xzf    $1 || tput 31  ;;
+	*.tar.xz)  exists tar        && tar xJf    $1 || tput 31  ;;
+	*.tar.bz2) exists tar        && tar xjf    $1 || tput 31  ;;
+	*.bz2)     exists bunzip2    && bunzip2    $1 || tput 31  ;;
+	*.gz)      exists gunzip     && gunzip     $1 || tput 31  ;;
+	*.xz)      exists unxz       && unxz       $1 || tput 31  ;;
 	# proprietary formats below
-#	*.rar)     which unrar   &> $NUL && unrar x    $1 || e unrar      ;;
-#	*.zip)     which unzip   &> $NUL && unzip      $1 || e unzip      ;;
-#	*.Z)    which uncompress &> $NUL && uncompress $1 || e uncompress ;;
+	*.rar)     exists unrar      && unrar x    $1 || tput 31  ;;
+	*.zip)     exists unzip      && unzip      $1 || tput 31  ;;
+	*.Z)       exists uncompress && uncompress $1 || tput 31  ;;
 	esac
 
 	else
 		echo "$1 is not a valid file"
 	fi
 }
-
-unalias e
-
-# vim: set ft=zsh :

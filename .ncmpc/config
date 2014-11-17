@@ -1,10 +1,26 @@
-host =			/tmp/mpd_socket
-enable-mouse =		no
-auto-center =		no
-visible-bitrate =	yes
-enable-colors =		yes
-color background =	none
-welcome-screen-list =	no
-scroll =		no
-wide-cursor =		yes
+host =				localhost
+enable-mouse =			no
+auto-center =			yes
+visible-bitrate =		yes
+enable-colors =			yes
+color background =		none
+welcome-screen-list =		no
+scroll =			no
+wide-cursor =			yes
+visible-bitrate =		no
 
+
+#color list-bold =		white
+color title =			black
+#color title =			black
+color title-bold =		black
+color list =			black
+color line =			white
+color line-flags =		black
+color browser-directory =	black
+color browser-playlist =	black
+color progressbar =		black
+color status-state =		black
+color status-song =		brightblack
+color list-bold =		brightyellow
+color status-time =		yellow
